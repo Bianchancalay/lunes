@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OH MY BAG!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Encabezado -->
+    <header class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-pink-600">Carteras Únicas</h1>
+      <div class="flex items-center gap-4">
+        <input id="searchInput" type="text" placeholder="Buscar cartera..." class="border rounded px-3 py-2 w-64" oninput="filtrarProductos()" />
+        <button onclick="mostrarCarrito()" class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">
+          Ver carrito (<span id="cartCount">0</span>)
+        </button>
+      </div>
+    </header>
+
+    <!-- Productos -->
+    <main id="productos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Producto 1 -->
+      <div class="producto bg-white rounded-xl shadow hover:shadow-lg transition p-4" data-nombre="Cartera Brillosa" data-precio="59990">
+        <img src="imagenes/3862c60532e5a651643a00f0e2b0fc52.jpg" alt="Cartera Brillosa" class="w-full h-60 object-cover rounded-lg" />
+        <p class="font-semibold text-lg mt-4">Cartera Brillosa</p>
+        <p class="text-pink-600 font-bold mt-1">$59.990</p>
+        <button onclick="agregarAlCarrito(this)" class="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agregar al carrito</button>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="producto bg-white rounded-xl shadow hover:shadow-lg transition p-4" data-nombre="Cartera Corazón" data-precio="64990">
+        <img src="imagenes/0954bdf48693c270d5c0d429d1fc0e98.jpg" alt="Cartera Corazón" class="w-full h-60 object-cover rounded-lg" />
+        <p class="font-semibold text-lg mt-4">Cartera Corazón</p>
+        <p class="text-pink-600 font-bold mt-1">$64.990</p>
+        <button onclick="agregarAlCarrito(this)" class="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agregar al carrito</button>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="producto bg-white rounded-xl shadow hover:shadow-lg transition p-4" data-nombre="Cartera Negra" data-precio="58000">
+        <img src="imagenes/b83b6751b6dd15a17cfcb390bc1eee1a.jpg" alt="Cartera Negra" class="w-full h-60 object-cover rounded-lg" />
+        <p class="font-semibold text-lg mt-4">Cartera Negra</p>
+        <p class="text-pink-600 font-bold mt-1">$58.000</p>
+        <button onclick="agregarAlCarrito(this)" class="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agregar al carrito</button>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="producto bg-white rounded-xl shadow hover:shadow-lg transition p-4" data-nombre="Cartera Animal Print" data-precio="62000">
+        <img src="imagenes/ee8e24ef13e81f7c5ba765a0c76ea7a0.jpg" alt="Cartera Animal Print" class="w-full h-60 object-cover rounded-lg" />
+        <p class="font-semibold text-lg mt-4">Cartera Animal Print</p>
+        <p class="text-pink-600 font-bold mt-1">$62.000</p>
+        <button onclick="agregarAlCarrito(this)" class="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agregar al carrito</button>
+      </div>
+
+      <!-- Producto 5 -->
+      <div class="producto bg-white rounded-xl shadow hover:shadow-lg transition p-4" data-nombre="Cartera Moño" data-precio="57000">
+        <img src="imagenes/c0f6fd1275a283831c3f8e3a70145bf2.jpg" alt="Cartera Moño" class="w-full h-60 object-cover rounded-lg" />
+        <p class="font-semibold text-lg mt-4">Cartera Moño</p>
+        <p class="text-pink-600 font-bold mt-1">$57.000</p>
+        <button onclick="agregarAlCarrito(this)" class="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agregar al carrito</button>
+      </div>
+
+      <!-- Producto 6 -->
+      <div class="producto bg-white rounded-xl shadow hover:shadow-lg transition p-4" data-nombre="Cartera Hello Kitty" data-precio="60000">
+        <img src="imagenes/35c62d8e44eb01854e02004d1eb91c5e.jpg" alt="Cartera Hello Kitty" class="w-full h-60 object-cover rounded-lg" />
+        <p class="font-semibold text-lg mt-4">Cartera Hello Kitty</p>
+        <p class="text-pink-600 font-bold mt-1">$60.000</p>
+        <button onclick="agregarAlCarrito(this)" class="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agregar al carrito</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Carrito -->
+  <div id="modalCarrito" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white w-full max-w-lg rounded-xl p-6 relative">
+      <h2 class="text-2xl font-bold mb-4">👜 Tu carrito</h2>
+      <ul id="listaCarrito" class="divide-y mb-4"></ul>
+      <p class="text-lg font-semibold">Total: <span id="totalCarrito">$0</span></p>
+      <div class="mt-6 text-right">
+        <button onclick="cerrarCarrito()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 mr-2">Cerrar</button>
+        <button onclick="pagar()" class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700">Finalizar compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación de regreso -->
+  <nav class="text-center my-8">
+    <a href="pagina.html" class="text-pink-600 hover:underline">Volver al inicio</a>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-6 text-sm">
+    © 2025 Carteras Elegantes. Todos los derechos reservados.<br />
+    <span class="text-gray-400">Desarrollado por Bianca Chancalay</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+  // Funciones para gestionar el carrito compartido en localStorage
+  function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('carrito')) || [];
+  }
+
+  function guardarCarrito(carrito) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+
+  function agregarAlCarrito(boton) {
+    const producto = boton.closest('.producto');
+    const nombre = producto.dataset.nombre;
+    const precio = parseInt(producto.dataset.precio);
+
+    let carrito = obtenerCarrito();
+    const existente = carrito.find(p => p.nombre === nombre);
+
+    if (existente) {
+      existente.cantidad++;
+    } else {
+      carrito.push({ nombre, precio, cantidad: 1 });
+    }
+
+    guardarCarrito(carrito);
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const carrito = obtenerCarrito();
+    const count = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+    document.getElementById('cartCount').innerText = count;
+
+    const lista = document.getElementById('listaCarrito');
+    lista.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach((item, index) => {
+      total += item.precio * item.cantidad;
+      const li = document.createElement('li');
+      li.className = 'py-2 flex justify-between items-center';
+      li.innerHTML = `
+        <span>${item.nombre} (x${item.cantidad})</span>
+        <div>
+          <span class="text-pink-600 font-semibold">$${(item.precio * item.cantidad).toLocaleString()}</span>
+          <button onclick="quitarUno(${index})" class="ml-2 text-red-500 hover:underline text-sm">Eliminar</button>
+        </div>`;
+      lista.appendChild(li);
+    });
+
+    document.getElementById('totalCarrito').innerText = `$${total.toLocaleString()}`;
+  }
+
+  function quitarUno(index) {
+    let carrito = obtenerCarrito();
+    carrito[index].cantidad--;
+    if (carrito[index].cantidad === 0) {
+      carrito.splice(index, 1);
+    }
+    guardarCarrito(carrito);
+    actualizarCarrito();
+  }
+
+  function mostrarCarrito() {
+    document.getElementById('modalCarrito').classList.replace('hidden', 'flex');
+    actualizarCarrito();
+  }
+
+  function cerrarCarrito() {
+    document.getElementById('modalCarrito').classList.replace('flex', 'hidden');
+  }
+
+  function pagar() {
+    const carrito = obtenerCarrito();
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío.');
+      return;
+    }
+
+    alert('✅ ¡Gracias por tu compra!');
+    localStorage.removeItem('carrito');
+    actualizarCarrito();
+    cerrarCarrito();
+  }
+
+  function filtrarProductos() {
+    const termino = document.getElementById('searchInput').value.toLowerCase();
+    const productos = document.querySelectorAll('.producto');
+    productos.forEach(p => {
+      const nombre = p.dataset.nombre.toLowerCase();
+      p.style.display = nombre.includes(termino) ? 'block' : 'none';
+    });
+  }
+
+  // Al cargar la página
+  window.addEventListener('DOMContentLoaded', actualizarCarrito);
+</script>
+  <footer class="text-center py-6 text-gray-500">
+    © 2025 OH MY BAG – Todos los derechos reservados.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OH MY BAG!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-3xl font-extrabold text-pink-600 cursor-pointer select-none" onclick="window.location.href='pagina.html'">
+        OH MY BAG
+      </h1>
+      <nav class="space-x-6 text-gray-700 font-semibold hidden md:flex">
+        <a href="nosotros/nosotros.html" class="hover:text-pink-600 transition">Nosotros</a>
+        <a href="#productos" class="hover:text-pink-600 transition">Productos</a>
+        <a href="#ofertas" class="hover:text-pink-600 transition">Ofertas</a>
+        <a href="#resenas" class="hover:text-pink-600 transition">Reseñas</a>
+        <a href="#contacto" class="hover:text-pink-600 transition">Contáctanos</a>
+      </nav>
+      <button onclick="mostrarCarrito()" class="relative bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition">
+        👜 Carrito (<span id="cartCount">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-24 max-w-7xl mx-auto px-4">
+
+    <!-- Frase bienvenida -->
+    <section class="relative h-screen flex items-center justify-center text-white text-center" style="background-image: url('imagenes/7fc1e4b87b9c9c00ef60191a5cfebea0.jpg'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  <div class="relative z-10 p-8">
+    <h1 class="text-5xl font-bold mb-4">Bienvenida a <span class="italic text-pink-200">OH MY BAG</span></h1>
+    <p class="text-xl">Elegancia, estilo y actitud en cada detalle</p>
+    <a href="#productos" class="mt-6 inline-block bg-white text-gray-800 font-semibold py-2 px-6 rounded-full hover:bg-pink-100 transition">Explorar carteras</a>
+  </div>
+</section>
+
+
+    <!-- Sección Productos -->
+    <section id="productos" aria-label="Nuestra colección de productos" class="mb-20">
+      <h3 class="text-3xl font-bold text-pink-600 mb-8 text-center">Nuestra Colección</h3>
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- Cartera Clásica -->
+        <article tabindex="0" aria-label="Carteras clásicas" 
+          class="cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition"
+          onclick="window.location.href='cartera clasica/carteraclasica.html'"
+          data-nombre="Cartera Clásica">
+          <img src="imagenes/233ab06497c750b944f34018a74cb7de.jpg" alt="Cartera clásica elegante" class="w-full h-64 object-cover" />
+          <div class="p-6 bg-white">
+            <h4 class="text-xl font-semibold mb-2">Carteras Clásicas</h4>
+            <p class="text-gray-600">Diseño atemporal y elegante, perfecto para cada ocasión.</p>
+          </div>
+        </article>
+
+        <!-- Cartera Moderna -->
+        <article tabindex="0" aria-label="Carteras modernas" 
+          class="cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition"
+          onclick="window.location.href='carteramoderna/carteramoderna.html'"
+          data-nombre="Cartera Moderna">
+          <img src="imagenes/73438a3b24d53fbce90012795ee56c88.jpg" alt="Cartera moderna para uso diario" class="w-full h-64 object-cover" />
+          <div class="p-6 bg-white">
+            <h4 class="text-xl font-semibold mb-2">Carteras Modernas</h4>
+            <p class="text-gray-600">Diseños actuales y frescos para el día a día.</p>
+          </div>
+        </article>
+
+        <!-- Cartera Fiesta -->
+        <article tabindex="0" aria-label="Carteras para fiesta" 
+          class="cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition"
+          onclick="window.location.href='carterafiesta/carterafiesta.html'"
+          data-nombre="Cartera de Fiesta">
+          <img src="imagenes/3862c60532e5a651643a00f0e2b0fc52.jpg" alt="Cartera para eventos especiales" class="w-full h-64 object-cover" />
+          <div class="p-6 bg-white">
+            <h4 class="text-xl font-semibold mb-2">Carteras de Fiesta</h4>
+            <p class="text-gray-600">Elegancia y brillo para tus eventos especiales.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sección Ofertas -->
+    <section id="ofertas" aria-label="Ofertas especiales" class="mb-20 max-w-4xl mx-auto">
+      <h3 class="text-3xl font-bold text-pink-600 mb-8 text-center">Ofertas Especiales</h3>
+      <div class="grid sm:grid-cols-2 gap-8">
+        <button onclick="alert('¡Oferta 1: 20% de descuento en Carteras Clásicas!')" class="bg-pink-100 text-pink-700 py-6 rounded-xl font-semibold shadow-md hover:bg-pink-200 transition">
+          20% de descuento en Carteras Clásicas
+        </button>
+        <button onclick="alert('¡Oferta 2: Envío gratis en Carteras Modernas!')" class="bg-pink-100 text-pink-700 py-6 rounded-xl font-semibold shadow-md hover:bg-pink-200 transition">
+          Envío gratis en Carteras Modernas
+        </button>
+        <button onclick="alert('¡Oferta 3: Regalo sorpresa con Carteras de Fiesta!')" class="bg-pink-100 text-pink-700 py-6 rounded-xl font-semibold shadow-md hover:bg-pink-200 transition">
+          Regalo sorpresa con Carteras de Fiesta
+        </button>
+        <button onclick="alert('¡Oferta 4: 15% off en toda la tienda!')" class="bg-pink-100 text-pink-700 py-6 rounded-xl font-semibold shadow-md hover:bg-pink-200 transition">
+          15% off en toda la tienda
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección Reseñas -->
+    <section id="resenas" aria-label="Reseñas de clientes" class="mb-20 max-w-5xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-pink-600 mb-8 text-center">Lo que dicen nuestras clientas</h3>
+      <div class="grid sm:grid-cols-3 gap-10 text-center">
+        <!-- Reseña 1 -->
+        <article class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+          <img src="imagenes/4886e285377ee663901af8af10fd5ba4.jpg" alt="Foto cliente Ana" class="w-24 h-24 rounded-full object-cover mb-4" />
+          <h4 class="font-semibold text-lg mb-1">Ana</h4>
+          <div class="flex justify-center space-x-1 text-pink-600">
+            <span>⭐️⭐️⭐️⭐️⭐️</span>
+          </div>
+          <p class="mt-3 text-gray-600 italic">"Me encantó la cartera clásica, perfecta para cualquier ocasión."</p>
+        </article>
+
+        <!-- Reseña 2 -->
+        <article class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+          <img src="imagenes/acfcde54594f124f43e9b31f73320a9c.jpg" alt="Foto cliente Carla" class="w-24 h-24 rounded-full object-cover mb-4" />
+          <h4 class="font-semibold text-lg mb-1">Carla</h4>
+          <div class="flex justify-center space-x-1 text-pink-600">
+            <span>⭐️⭐️⭐️⭐️⭐️</span>
+          </div>
+          <p class="mt-3 text-gray-600 italic">"La cartera moderna es súper práctica y con mucho estilo."</p>
+        </article>
+
+        <!-- Reseña 3 -->
+        <article class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+          <img src="imagenes/fa8dcb2a8ed48bd92e73659fa67bd4b5.jpg" alt="Foto cliente Lucía" class="w-24 h-24 rounded-full object-cover mb-4" />
+          <h4 class="font-semibold text-lg mb-1">Lucía</h4>
+          <div class="flex justify-center space-x-1 text-pink-600">
+            <span>⭐️⭐️⭐️⭐️☆</span>
+          </div>
+          <p class="mt-3 text-gray-600 italic">"Las carteras de fiesta brillan y son el complemento ideal."</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" aria-label="Formulario de contacto" class="mb-16 max-w-2xl mx-auto px-6 py-8 bg-white rounded-xl shadow-md">
+      <h3 class="text-3xl font-bold text-pink-600 mb-6 text-center">Contáctanos</h3>
+      <form id="contactForm" class="space-y-4">
+        <div>
+          <label for="nombre" class="block font-semibold mb-1">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-pink-600" />
+        </div>
+        <div>
+          <label for="email" class="block font-semibold mb-1">Email</label>
+          <input type="email" id="email" name="email" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-pink-600" />
+        </div>
+        <div>
+          <label for="mensaje" class="block font-semibold mb-1">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" required rows="4" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-pink-600"></textarea>
+        </div>
+        <button type="submit" class="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700 transition font-semibold w-full">Enviar</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Modal Carrito -->
+  <div id="modalCarrito" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white w-full max-w-lg rounded-xl p-6 relative">
+      <h2 class="text-2xl font-bold mb-4">👜 Tu carrito</h2>
+      <ul id="listaCarrito" class="divide-y mb-4 max-h-72 overflow-y-auto"></ul>
+      <p class="text-lg font-semibold">Total: <span id="totalCarrito">$0</span></p>
+      <div class="mt-6 text-right flex justify-end gap-4">
+        <button onclick="cerrarCarrito()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cerrar</button>
+        <button onclick="pagar()" class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700">Finalizar compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-6 text-center text-sm">
+    © 2025 Carteras Elegantes. Todos los derechos reservados. <br />
+    <span class="text-gray-400">Desarrollado por Bianca Chancalay</span>
+  </footer>
+
+  <!-- Script Carrito y Formulario -->
+  <script>
+    // Carrito con localStorage (global)
+    function obtenerCarrito() {
+      return JSON.parse(localStorage.getItem('carrito') || '[]');
+    }
+
+    function guardarCarrito(carrito) {
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    function actualizarCarrito() {
+      const carrito = obtenerCarrito();
+      const count = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+      document.getElementById('cartCount').innerText = count;
+
+      const lista = document.getElementById('listaCarrito');
+      lista.innerHTML = '';
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        total += item.precio * item.cantidad;
+        const li = document.createElement('li');
+        li.className = 'py-2 flex justify-between items-center';
+        li.innerHTML = `
+          <span>${item.nombre} (x${item.cantidad})</span>
+          <div>
+            <span class="text-pink-600 font-semibold">$${(item.precio * item.cantidad).toLocaleString()}</span>
+            <button onclick="quitarUno(${index})" class="ml-2 text-red-500 hover:underline text-sm">Eliminar</button>
+          </div>`;
+        lista.appendChild(li);
+      });
+
+      document.getElementById('totalCarrito').innerText = `$${total.toLocaleString()}`;
+    }
+
+    function agregarAlCarrito(boton) {
+      const producto = boton.closest('.card') || boton.closest('.producto');
+      if (!producto) return;
+
+      const nombre = producto.dataset.nombre || producto.querySelector('h4, h3')?.innerText || 'Producto';
+      const precio = parseInt(producto.dataset.precio || '0');
+
+      let carrito = obtenerCarrito();
+      const existente = carrito.find(p => p.nombre === nombre);
+
+      if (existente) {
+        existente.cantidad++;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
+
+      guardarCarrito(carrito);
+      actualizarCarrito();
+    }
+
+    function quitarUno(index) {
+      let carrito = obtenerCarrito();
+      carrito[index].cantidad--;
+      if (carrito[index].cantidad === 0) {
+        carrito.splice(index, 1);
+      }
+      guardarCarrito(carrito);
+      actualizarCarrito();
+    }
+
+    function mostrarCarrito() {
+      document.getElementById('modalCarrito').classList.remove('hidden');
+      document.getElementById('modalCarrito').classList.add('flex');
+      actualizarCarrito();
+    }
+
+    function cerrarCarrito() {
+      document.getElementById('modalCarrito').classList.remove('flex');
+      document.getElementById('modalCarrito').classList.add('hidden');
+    }
+
+    function pagar() {
+      const carrito = obtenerCarrito();
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      alert("✅ ¡Gracias por tu compra!");
+      localStorage.removeItem('carrito');
+      actualizarCarrito();
+      cerrarCarrito();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      actualizarCarrito();
+
+      // Formulario contacto
+      document.getElementById('contactForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const nombre = e.target.nombre.value.trim();
+        const email = e.target.email.value.trim();
+        const mensaje = e.target.mensaje.value.trim();
+        if (!nombre || !email || !mensaje) {
+          alert("Por favor, completa todos los campos.");
+          return;
+        }
+        alert(`Gracias, ${nombre}. Tu mensaje fue enviado.`);
+        e.target.reset();
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
